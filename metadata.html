@@ -1,19 +1,58 @@
-<!DOCTYPE html><html><head><meta charset='utf-8'><title>Metadata</title>
-<link rel='stylesheet' href='css/style.css'><script src='js/seed.js'></script>
-<script src='js/auth.js'></script><script src='js/data.js'></script><script>const active=h=>document.querySelectorAll('.sidebar a').forEach(a=>a.getAttribute('href')===h&&a.classList.add('active'));</script><script>
-let data=[];
-function render(){mt.innerHTML=data.map(d=>`<tr><td>${d.id}</td><td>${d.timestamp}</td><td>${d.time}</td><td>${d.ip}</td><td>${d.sentiment}</td>
-<td><a class='btn btn-alt' href='chat.html?session=${d.id}'>View chat</a></td></tr>`).join('');}
-function filterRange(){const f=from.value,t=to.value;data=meta(client).filter(d=>(!f||d.timestamp>=f)&&(!t||d.timestamp<=t));render();}
-const client=new URLSearchParams(location.search).get('client')||'Jumbo';
-hdr.textContent='Metadata — '+client;data=meta(client);document.addEventListener('DOMContentLoaded',render);
-</script></head>
-<body onload="guard();active('metadata.html')"><div class='container'>
-<div class='sidebar'><h1>Notso AI</h1><a href='dashboard.html'>Dashboard</a>
-  <a href='clients.html'>Clients</a>
-  <a href='users.html'>Users</a>
-  <a href='settings.html'>Settings</a>
-  <a href='profile.html'>Profile</a><a href='javascript:logout()' style='margin-top:auto'>Logout</a></div>
-<div class='main'><h2 id='hdr'></h2><div class='row'><div><input type='date' id='from'></div><div><input type='date' id='to'></div>
-<div><button class='btn btn-alt' onclick='filterRange()'>Filter</button></div><div><a class='btn btn-alt' href='dashboard.html'>Go back</a></div></div>
-<table><thead><tr><th>ID</th><th>Date</th><th>Time</th><th>IP</th><th>Sentiment</th><th></th></tr></thead><tbody id='mt'></tbody></table></div></div></body></html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <title>Metadata</title>
+  <link rel='stylesheet' href='css/style.css'>
+  <script src='js/seed.js'></script>
+  <script src='js/auth.js'></script>
+  <script src='js/data.js'></script>
+  <script>const active = h => document.querySelectorAll('.sidebar a').forEach(a => a.getAttribute('href') === h && a.classList.add('active'));</script>
+  <script>
+    let data = [];
+    function render() {
+      mt.innerHTML = data.map(d => `<tr><td>${d.id}</td><td>${d.timestamp}</td><td>${d.time}</td><td>${d.ip}</td><td>${d.sentiment}</td>
+<td><a class='btn btn-alt' href='chat.html?session=${d.id}'>View chat</a></td></tr>`).join('');
+    }
+    function filterRange() { const f = from.value, t = to.value; data = meta(client).filter(d => (!f || d.timestamp >= f) && (!t || d.timestamp <= t)); render(); }
+    const client = new URLSearchParams(location.search).get('client') || 'Jumbo';
+    hdr.textContent = 'Metadata — ' + client; data = meta(client); document.addEventListener('DOMContentLoaded', render);
+  </script>
+</head>
+
+<body onload="guard();active('metadata.html')">
+  <div class='container'>
+    <div class='sidebar'>
+      <h1>Notso AI</h1><a href='dashboard.html'>Dashboard</a>
+      <a href='clients.html'>Clients</a>
+      <a href='users.html'>Users</a>
+      <a href='settings.html'>Settings</a>
+      <a href='profile.html'>Profile</a><a href='javascript:logout()' style='margin-top:auto'>Logout</a>
+    </div>
+    <div class='main'>
+      <h2 id='hdr'></h2>
+      <div class='row'>
+        <div><input type='date' id='from'></div>
+        <div><input type='date' id='to'></div>
+        <div><button class='btn btn-alt' onclick='filterRange()'>Filter</button></div>
+        <div><a class='btn btn-alt' href='dashboard.html'>Go back</a></div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>IP</th>
+            <th>Sentiment</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id='mt'></tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,12 +1,35 @@
-<!DOCTYPE html><html><head><meta charset='utf-8'><title>Dashboard</title>
-<link rel='stylesheet' href='css/style.css'><script src='js/seed.js'></script>
-<script src='js/auth.js'></script><script src='js/data.js'></script><script>const active=h=>document.querySelectorAll('.sidebar a').forEach(a=>a.getAttribute('href')===h&&a.classList.add('active'));</script><script>document.addEventListener('DOMContentLoaded',()=>{const wrap=document.getElementById('cards');
-wrap.innerHTML=clients().map(c=>`<div class='card'><h3>${c.name}</h3><span class='status ${c.status}'>${c.status}</span>
-<a class='btn btn-alt' style='margin-top:12px;display:inline-block' href='metadata.html?client=${encodeURIComponent(c.name)}'>View metadata</a></div>`).join('')});</script></head>
-<body onload="guard();active('dashboard.html')"><div class='container'>
-<div class='sidebar'><h1>Notso AI</h1><a href='dashboard.html'>Dashboard</a>
-  <a href='clients.html'>Clients</a>
-  <a href='users.html'>Users</a>
-  <a href='settings.html'>Settings</a>
-  <a href='profile.html'>Profile</a><a href='javascript:logout()' style='margin-top:auto'>Logout</a></div>
-<div class='main'><h2>Dashboard</h2><div id='cards' style='display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px'></div></div></div></body></html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <title>Dashboard</title>
+  <link rel='stylesheet' href='css/style.css'>
+  <script src='js/seed.js'></script>
+  <script src='js/auth.js'></script>
+  <script src='js/data.js'></script>
+  <script>const active = h => document.querySelectorAll('.sidebar a').forEach(a => a.getAttribute('href') === h && a.classList.add('active'));</script>
+  <script>document.addEventListener('DOMContentLoaded', () => {
+      const wrap = document.getElementById('cards');
+      wrap.innerHTML = clients().map(c => `<div class='card'><h3>${c.name}</h3><span class='status ${c.status}'>${c.status}</span>
+<a class='btn btn-alt' style='margin-top:12px;display:inline-block' href='metadata.html?client=${encodeURIComponent(c.name)}'>View metadata</a></div>`).join('')
+    });</script>
+</head>
+
+<body onload="guard();active('dashboard.html')">
+  <div class='container'>
+    <div class='sidebar'>
+      <h1>Notso AI</h1><a href='dashboard.html'>Dashboard</a>
+      <a href='clients.html'>Clients</a>
+      <a href='users.html'>Users</a>
+      <a href='settings.html'>Settings</a>
+      <a href='profile.html'>Profile</a><a href='javascript:logout()' style='margin-top:auto'>Logout</a>
+    </div>
+    <div class='main'>
+      <h2>Dashboard</h2>
+      <div id='cards' style='display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px'></div>
+    </div>
+  </div>
+</body>
+
+</html>
