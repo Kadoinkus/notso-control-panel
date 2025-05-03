@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><title>Users</title>
+<link rel='stylesheet' href='css/style.css'><script src='js/seed.js'></script>
+<script src='js/auth.js'></script><script src='js/data.js'></script><script>const active=h=>document.querySelectorAll('.sidebar a').forEach(a=>a.getAttribute('href')===h&&a.classList.add('active'));</script><script>
+function renderU(){urows.innerHTML=users().map((u,i)=>`<tr><td>${u.email}</td><td>${u.role}</td>
+<td>${u.email!=='admin'?'<button class="btn btn-alt" onclick="delU('+i+')">Delete</button>':''}</td></tr>`).join('');}
+function addU(e){e.preventDefault();if(!ue.value||!up.value)return;const arr=users();arr.push({email:ue.value,password:up.value,role:'Staff'});setUsers(arr);ue.value=up.value='';renderU();}
+function delU(i){let arr=users();arr.splice(i,1);setUsers(arr);renderU();}
+document.addEventListener('DOMContentLoaded',renderU);
+</script></head>
+<body onload="guard();active('users.html')"><div class='container'>
+<div class='sidebar'><h1>Notso AI</h1><a href='dashboard.html'>Dashboard</a>
+  <a href='clients.html'>Clients</a>
+  <a href='users.html'>Users</a>
+  <a href='settings.html'>Settings</a>
+  <a href='profile.html'>Profile</a><a href='javascript:logout()' style='margin-top:auto'>Logout</a></div>
+<div class='main'><h2>Users</h2><form onsubmit='addU(event)' class='row'><div><input id='ue' placeholder='Email'></div><div><input id='up' placeholder='Password'></div><div><button class='btn'>Add</button></div></form>
+<table><thead><tr><th>Email</th><th>Role</th><th></th></tr></thead><tbody id='urows'></tbody></table></div></div></body></html>
